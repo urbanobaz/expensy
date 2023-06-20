@@ -21,7 +21,7 @@ export default function IndexPage() {
           href={siteConfig.links.docs}
           target="_blank"
           rel="noreferrer"
-          className={buttonVariants()}
+          className={buttonVariants({ variant: "default" })}
         >
           Documentation
         </Link>
@@ -32,6 +32,38 @@ export default function IndexPage() {
           className={buttonVariants({ variant: "outline" })}
         >
           GitHub
+        </Link>
+        <Link
+          target="_blank"
+          rel="noreferrer"
+          href={siteConfig.links.github}
+          className={buttonVariants({ variant: "destructive", size: "lg" })}
+        >
+          Destructive
+        </Link>
+        <Link
+          target="_blank"
+          rel="noreferrer"
+          href={siteConfig.links.github}
+          className={buttonVariants({ variant: "ghost" })}
+        >
+          Ghost
+        </Link>
+        <Link
+          target="_blank"
+          rel="noreferrer"
+          href={siteConfig.links.github}
+          className={buttonVariants({ variant: "link" })}
+        >
+          Ghost
+        </Link>
+        <Link
+          target="_blank"
+          rel="noreferrer"
+          href={siteConfig.links.github}
+          className={buttonVariants({ variant: "pink" })}
+        >
+          Pink
         </Link>
       </div>
     </section>
