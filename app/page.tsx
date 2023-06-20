@@ -18,7 +18,7 @@ export default function IndexPage() {
       </div>
       <div className="flex gap-4">
         <Link
-          href={siteConfig.links.docs}
+          href={siteConfig.links.signup}
           target="_blank"
           rel="noreferrer"
           className={buttonVariants({ variant: "default" })}
@@ -28,15 +28,15 @@ export default function IndexPage() {
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.github}
+          href={siteConfig.links.signup}
           className={buttonVariants({ variant: "outline" })}
         >
-          GitHub
+          Sign up
         </Link>
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.github}
+          href={siteConfig.links.signup}
           className={buttonVariants({ variant: "destructive", size: "lg" })}
         >
           Destructive
@@ -44,7 +44,7 @@ export default function IndexPage() {
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.github}
+          href={siteConfig.links.signup}
           className={buttonVariants({ variant: "ghost" })}
         >
           Ghost
@@ -52,7 +52,7 @@ export default function IndexPage() {
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.github}
+          href={siteConfig.links.signup}
           className={buttonVariants({ variant: "link" })}
         >
           Ghost
@@ -60,7 +60,7 @@ export default function IndexPage() {
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.github}
+          href={siteConfig.links.signup}
           className={buttonVariants({ variant: "pink" })}
         >
           Pink

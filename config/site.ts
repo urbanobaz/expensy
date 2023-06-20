@@ -5,17 +5,12 @@ export const siteConfig = {
   description: "An intuitive way to keep track of your finances.",
   mainNav: [
     {
-      title: "Income",
-      href: "/income",
-    },
-    {
-      title: "Expense",
-      href: "/expense",
+      title: "Dashboard",
+      href: "/dashboard",
     },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    signup: "/sign-up",
+    signin: "/sign-in",
   },
 }
