@@ -29,31 +29,31 @@ const data = [
   },
   {
     name: "Jul",
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: 0,
   },
   {
     name: "Aug",
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: 0,
   },
   {
     name: "Sep",
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: 0,
   },
   {
     name: "Oct",
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: 0,
   },
   {
     name: "Nov",
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: 0,
   },
   {
     name: "Dec",
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: 0,
   },
 ]
 
-export function IncomeOverview() {
+export function IncomeBarChart() {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart data={data}>
@@ -72,30 +72,6 @@ export function IncomeOverview() {
           tickFormatter={(value) => `$${value}`}
         />
         <Bar dataKey="total" fill="#adfa1d" radius={[4, 4, 0, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
-  )
-}
-
-export function ExpenseOverview() {
-  return (
-    <ResponsiveContainer width="100%" height={350}>
-      <BarChart data={data}>
-        <XAxis
-          dataKey="name"
-          stroke="#888888"
-          fontSize={12}
-          tickLine={false}
-          axisLine={false}
-        />
-        <YAxis
-          stroke="#888888"
-          fontSize={12}
-          tickLine={false}
-          axisLine={false}
-          tickFormatter={(value) => `$${value}`}
-        />
-        <Bar dataKey="total" fill="#fa491d" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   )
