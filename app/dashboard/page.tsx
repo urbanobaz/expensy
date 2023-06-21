@@ -1,14 +1,17 @@
 import Link from "next/link"
 import { Minus, Plus } from "lucide-react"
 
-import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { cn, currencyFormat } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExpenseBarChart } from "@/components/expense/expense-bar-chart"
-import { ExpenseDataTable } from "@/components/expense/expense-data-table"
-import { IncomeBarChart } from "@/components/income/income-bar-chart"
-import { IncomeDataTable } from "@/components/income/income-data-table"
+import { ExpenseBarChart } from "@/app/dashboard/expense/expense-bar-chart"
+import { ExpenseDataTable } from "@/app/dashboard/expense/expense-data-table"
+import { IncomeBarChart } from "@/app/dashboard/income/income-bar-chart"
+import { IncomeDataTable } from "@/app/dashboard/income/income-data-table"
+
+import { expenseTotal } from "./expense/data"
+import { incomeTotal } from "./income/data"
 
 export default function DashboardPage() {
   return (
@@ -29,7 +32,9 @@ export default function DashboardPage() {
               <Plus className="h-6 w-6 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$45,231.89</div>
+              <div className="text-2xl font-bold">
+                {currencyFormat(incomeTotal)}
+              </div>
               <Link href="/add-income" className={cn(buttonVariants(), "mt-3")}>
                 Add income
               </Link>
@@ -41,8 +46,15 @@ export default function DashboardPage() {
               <Minus className="h-6 w-6 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$15,231.89</div>
-              <Button className="mt-3">Add expense</Button>
+              <div className="text-2xl font-bold">
+                {currencyFormat(expenseTotal)}
+              </div>
+              <Link
+                href="/add-expense"
+                className={cn(buttonVariants(), "mt-3")}
+              >
+                Add expense
+              </Link>
             </CardContent>
           </Card>
         </div>
@@ -53,7 +65,7 @@ export default function DashboardPage() {
               <CardHeader>
                 <CardTitle>Monthly Income</CardTitle>
               </CardHeader>
-              <CardContent className="pl-2">
+              <CardContent className="px-2">
                 <IncomeBarChart />
               </CardContent>
             </Card>
@@ -64,7 +76,7 @@ export default function DashboardPage() {
               <CardHeader>
                 <CardTitle>Income Breakdown</CardTitle>
               </CardHeader>
-              <CardContent className="pl-2">
+              <CardContent className="pl-6">
                 <IncomeDataTable />
               </CardContent>
             </Card>
@@ -76,7 +88,7 @@ export default function DashboardPage() {
               <CardHeader>
                 <CardTitle>Monthly Expense</CardTitle>
               </CardHeader>
-              <CardContent className="pl-2">
+              <CardContent className="px-2">
                 <ExpenseBarChart />
               </CardContent>
             </Card>
@@ -87,7 +99,7 @@ export default function DashboardPage() {
               <CardHeader>
                 <CardTitle>Expense Breakdown</CardTitle>
               </CardHeader>
-              <CardContent className="pl-2">
+              <CardContent className="pl-6">
                 <ExpenseDataTable />
               </CardContent>
             </Card>

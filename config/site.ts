@@ -8,6 +8,14 @@ export const siteConfig = {
       title: "Dashboard",
       href: "/dashboard",
     },
+    {
+      title: "Add Income",
+      href: "/add-income",
+    },
+    {
+      title: "Add Expense",
+      href: "/add-expense",
+    },
   ],
   links: {
     signup: "/sign-up",

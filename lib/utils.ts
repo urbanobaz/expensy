@@ -11,3 +11,12 @@ export function currencyFormat(amount: number) {
     currency: "USD",
   }).format(amount)
 }
+
+export function dateToString(date: Date) {
+  return date.toLocaleDateString("en-us", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  })
+}
