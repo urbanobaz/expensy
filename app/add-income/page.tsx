@@ -19,13 +19,13 @@ export default function DashboardPage() {
         <Input placeholder="Type" type="text" className="mb-2" />
         <Input placeholder="Client name" type="text" className="mb-2" />
         <Input placeholder="Amount" type="number" className="mb-2" />
-        <Input placeholder="Date" type="date" className="mb-2" />
+        <Input type="date" className="mb-2" />
         <CardFooter className="px-0 pt-6">
           <Button
             className="w-full text-base"
             onClick={() => {
               toast({
-                description: "Income added",
+                description: "Income added!",
               })
             }}
           >
