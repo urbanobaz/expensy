@@ -6,10 +6,10 @@ import { ArrowUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export type Expense = {
-  id: string
+  id: number
   description: string
   date: string
-  amount: string
+  amount: number
 }
 
 export const columns: ColumnDef<Expense>[] = [
