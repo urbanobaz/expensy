@@ -1,10 +1,9 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardFooter, CardHeader } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { toast } from "@/components/ui/use-toast"
+import { Card, CardHeader } from "@/components/ui/card"
+
+import AddExpenseForm from "./AddExpenseForm"
 
 export default function DashboardPage() {
   return (
@@ -15,19 +14,7 @@ export default function DashboardPage() {
             Expense details
           </h3>
         </CardHeader>
-        <Input placeholder="Description" type="text" className="mb-2" />
-        <Input placeholder="Amount" type="number" className="mb-2" />
-        <Input type="date" className="mb-2" />
-        <CardFooter className="px-0 pt-6">
-          <Button
-            className="w-full text-base"
-            onClick={() => {
-              toast({ description: "Expense added!" })
-            }}
-          >
-            Add Expense
-          </Button>
-        </CardFooter>
+        <AddExpenseForm />
       </Card>
     </div>
   )
