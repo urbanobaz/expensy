@@ -2,6 +2,11 @@
 
 import prisma from "@/prisma/client"
 
+export async function getExpense() {
+  const expense = await prisma.expense.findMany()
+  return expense
+}
+
 export async function createExpense(formData) {
   const description = formData.get("description")
   const amount = parseFloat(formData.get("amount"))
