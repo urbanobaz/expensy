@@ -1,5 +1,3 @@
-"use client"
-
 import { siteConfig } from "@/config/site"
 import AuthComponent from "@/components/login-btn"
 import { MainNav } from "@/components/navbar/main-nav"
