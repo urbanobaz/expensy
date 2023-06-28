@@ -1,7 +1,6 @@
 import prisma from "@/prisma/client"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import NextAuth from "next-auth"
-// import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 
 export const authOptions = {
@@ -11,30 +10,36 @@ export const authOptions = {
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
-    // CredentialsProvider({
-    //   name: "Credentials",
-    //   credentials: {
-    //     email: { label: "Email", type: "text", placeholder: "Email" },
-    //     password: { label: "Password", type: "password" },
-    //   },
-    //   async authorize(credentials, req) {
-    //     const res = await fetch("/your/endpoint", {
-    //       method: "POST",
-    //       body: JSON.stringify(credentials),
-    //       headers: { "Content-Type": "application/json" },
-    //     })
-    //     const user = await res.json()
-    //     console.log(req)
-
-    //     // If no error and we have user data, return it
-    //     if (res.ok && user) {
-    //       return user
-    //     }
-    //     // Return null if user data could not be retrieved
-    //     return null
-    //   },
-    // }),
   ],
+  callbacks: {
+    async session({ session }) {
+      return session
+    },
+    async signIn({ profile }) {
+      console.log(profile)
+      try {
+        // Check if user exists in database
+        const user = await prisma.user.findUnique({
+          where: {
+            email: profile.email,
+          },
+        })
+
+        // if not, create a new user in the database
+        if (!user) {
+          const user = await prisma.user.create({
+            email: profile.email,
+            name: profile.name,
+            image: profile.picture,
+          })
+        }
+        return true
+      } catch (error) {
+        console.log(error)
+        return false
+      }
+    },
+  },
 }
 
 const handler = NextAuth(authOptions)

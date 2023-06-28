@@ -9,7 +9,7 @@ import { SiteHeader } from "@/components/navbar/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
-import { NextAuthProvider } from "./providers"
+import { NextAuthProvider } from "./provider"
 
 export const metadata: Metadata = {
   title: {
