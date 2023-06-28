@@ -1,7 +1,11 @@
+import { getServerSession } from "next-auth"
+
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { incomeData } from "@/app/dashboard/income/income-data-table"
 
 async function getIncomeData() {
-  const data = await incomeData()
+  const session = getServerSession(authOptions)
+  const data = await incomeData(session?.user?.email)
   return data
 }
 

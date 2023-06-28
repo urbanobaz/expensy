@@ -1,7 +1,11 @@
+import { getServerSession } from "next-auth"
+
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { expenseData } from "@/app/dashboard/expense/expense-data-table"
 
 async function getExpenseData() {
-  const data = await expenseData()
+  const session = getServerSession(authOptions)
+  const data = await expenseData(session?.user?.email)
   return data
 }
 
