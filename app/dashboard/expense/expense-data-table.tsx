@@ -1,22 +1,13 @@
-import prisma from "@/prisma/client"
-
-import { currencyFormat, dateToString } from "@/lib/utils"
-import { Expense, columns } from "@/app/dashboard/expense/columns"
+import { getExpenseDataByUser } from "@/app/actions"
+import { columns } from "@/app/dashboard/expense/columns"
 import { DataTable } from "@/app/dashboard/expense/data-table"
 
-async function getExpenseData() {
-  const data = await prisma.expense.findMany()
-  const preppedExpense = data.map((obj: any) => {
-    return {
-      ...obj,
-      date: dateToString(new Date(obj.date)),
-      amount: currencyFormat(obj.amount),
-    }
-  })
-  return preppedExpense
+export async function expenseData() {
+  const data = await getExpenseDataByUser("ubazdevelops@gmail.com")
+  return data
 }
 
 export async function ExpenseDataTable() {
-  const data = await getExpenseData()
+  const data = await expenseData()
   return <DataTable columns={columns} data={data} />
 }

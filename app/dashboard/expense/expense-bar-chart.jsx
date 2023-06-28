@@ -2,12 +2,10 @@
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 
-import { expense } from "./data"
-
-export function ExpenseBarChart() {
+export function ExpenseBarChart({ data }) {
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <BarChart data={expense}>
+      <BarChart data={data}>
         <XAxis
           dataKey="name"
           stroke="#888888"

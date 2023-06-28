@@ -56,3 +56,19 @@ export async function getIncomeDataByUser(email) {
   })
   return preppedIncome
 }
+
+export async function getExpenseDataByUser(email) {
+  const data = await prisma.expense.findMany({
+    where: {
+      userEmail: email,
+    },
+  })
+  const preppedExpense = data.map((obj) => {
+    return {
+      ...obj,
+      date: dateToString(new Date(obj.date)),
+      amount: obj.amount,
+    }
+  })
+  return preppedExpense
+}

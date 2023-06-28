@@ -2,12 +2,10 @@
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 
-import { income } from "./data"
-
-export function IncomeBarChart() {
+export function IncomeBarChart({ data }) {
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <BarChart data={income}>
+      <BarChart data={data}>
         <XAxis
           dataKey="name"
           stroke="#888888"

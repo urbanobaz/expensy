@@ -5,15 +5,24 @@ import { cn, currencyFormat } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  organizedExpenseData,
+  totalExpenseAmount,
+} from "@/app/dashboard/expense/data"
 import { ExpenseBarChart } from "@/app/dashboard/expense/expense-bar-chart"
 import { ExpenseDataTable } from "@/app/dashboard/expense/expense-data-table"
+import {
+  organizedIncomeData,
+  totalIncomeAmount,
+} from "@/app/dashboard/income/data"
 import { IncomeBarChart } from "@/app/dashboard/income/income-bar-chart"
 import { IncomeDataTable } from "@/app/dashboard/income/income-data-table"
 
-import { expenseTotal } from "./expense/data"
-import { incomeTotal } from "./income/data"
-
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const incomeBarChartInfo = await organizedIncomeData()
+  const expenseBarChartInfo = await organizedExpenseData()
+  const totalIncome = await totalIncomeAmount()
+  const totalExpense = await totalExpenseAmount()
   return (
     <div className="container flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
@@ -33,7 +42,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {currencyFormat(incomeTotal)}
+                {currencyFormat(totalIncome)}
               </div>
               <Link href="/add-income" className={cn(buttonVariants(), "mt-3")}>
                 Add income
@@ -47,7 +56,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {currencyFormat(expenseTotal)}
+                {currencyFormat(totalExpense)}
               </div>
               <Link
                 href="/add-expense"
@@ -66,7 +75,7 @@ export default function DashboardPage() {
                 <CardTitle>Monthly Income</CardTitle>
               </CardHeader>
               <CardContent className="px-2">
-                <IncomeBarChart />
+                <IncomeBarChart data={incomeBarChartInfo} />
               </CardContent>
             </Card>
           </div>
@@ -89,7 +98,7 @@ export default function DashboardPage() {
                 <CardTitle>Monthly Expense</CardTitle>
               </CardHeader>
               <CardContent className="px-2">
-                <ExpenseBarChart />
+                <ExpenseBarChart data={expenseBarChartInfo} />
               </CardContent>
             </Card>
           </div>
