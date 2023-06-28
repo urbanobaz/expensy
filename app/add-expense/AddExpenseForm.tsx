@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
 
 import { Button } from "@/components/ui/button"
 import { CardFooter } from "@/components/ui/card"
@@ -8,9 +9,14 @@ import { Input } from "@/components/ui/input"
 import { createExpense } from "@/app/actions"
 
 export default function AddExpenseForm() {
+  const { data: session } = useSession()
   const router = useRouter()
   async function action(formData: FormData) {
-    await createExpense(formData)
+    if (!session) {
+      console.log("Need to have an account to add income or expense.")
+      return
+    }
+    await createExpense(formData, session?.user?.email)
     router.push("/dashboard")
   }
   return (
