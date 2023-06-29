@@ -1,11 +1,14 @@
 import { getServerSession } from "next-auth"
 
+import { getIncomeDataByUser } from "@/app/actions"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
-import { incomeData } from "@/app/dashboard/income/income-data-table"
 
 async function getIncomeData() {
   const session = await getServerSession(authOptions)
-  const data = await incomeData(session?.user?.email)
+  if (!session.user.email) {
+    return []
+  }
+  const data = await getIncomeDataByUser(session?.user?.email)
   return data
 }
 
@@ -182,4 +185,4 @@ async function totalIncomeAmount() {
   return incomeTotal
 }
 
-export { organizedIncomeData, totalIncomeAmount }
+export { organizedIncomeData, totalIncomeAmount, getIncomeData }

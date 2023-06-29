@@ -6,12 +6,14 @@ import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
+  getExpenseData,
   organizedExpenseData,
   totalExpenseAmount,
 } from "@/app/dashboard/expense/data"
 import { ExpenseBarChart } from "@/app/dashboard/expense/expense-bar-chart"
 import { ExpenseDataTable } from "@/app/dashboard/expense/expense-data-table"
 import {
+  getIncomeData,
   organizedIncomeData,
   totalIncomeAmount,
 } from "@/app/dashboard/income/data"
@@ -19,6 +21,8 @@ import { IncomeBarChart } from "@/app/dashboard/income/income-bar-chart"
 import { IncomeDataTable } from "@/app/dashboard/income/income-data-table"
 
 export default async function DashboardPage() {
+  const incomeTableData = await getIncomeData()
+  const expenseTableData = await getExpenseData()
   const incomeBarChartInfo = await organizedIncomeData()
   const expenseBarChartInfo = await organizedExpenseData()
   const totalIncome = await totalIncomeAmount()
@@ -86,7 +90,7 @@ export default async function DashboardPage() {
                 <CardTitle>Income Breakdown</CardTitle>
               </CardHeader>
               <CardContent className="pl-6">
-                <IncomeDataTable />
+                <IncomeDataTable data={incomeTableData} />
               </CardContent>
             </Card>
           </div>
@@ -109,7 +113,7 @@ export default async function DashboardPage() {
                 <CardTitle>Expense Breakdown</CardTitle>
               </CardHeader>
               <CardContent className="pl-6">
-                <ExpenseDataTable />
+                <ExpenseDataTable data={expenseTableData} />
               </CardContent>
             </Card>
           </div>

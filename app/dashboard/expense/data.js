@@ -1,11 +1,14 @@
 import { getServerSession } from "next-auth"
 
+import { getExpenseDataByUser } from "@/app/actions"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
-import { expenseData } from "@/app/dashboard/expense/expense-data-table"
 
 async function getExpenseData() {
   const session = await getServerSession(authOptions)
-  const data = await expenseData(session?.user?.email)
+  if (!session.user.email) {
+    return []
+  }
+  const data = await getExpenseDataByUser(session?.user?.email)
   return data
 }
 
@@ -190,4 +193,4 @@ async function totalExpenseAmount() {
   return expenseTotal
 }
 
-export { organizedExpenseData, totalExpenseAmount }
+export { organizedExpenseData, totalExpenseAmount, getExpenseData }

@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/ui/button"
 
 export default function IndexPage() {
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
+    <section className="container grid items-center gap-6 px-10 py-8">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           Beautifully designed components <br className="hidden sm:inline" />
@@ -17,14 +17,6 @@ export default function IndexPage() {
         </p>
       </div>
       <div className="flex gap-4">
-        <Link
-          href={siteConfig.links.signup}
-          target="_blank"
-          rel="noreferrer"
-          className={buttonVariants({ variant: "default" })}
-        >
-          Documentation
-        </Link>
         <Link
           target="_blank"
           rel="noreferrer"
@@ -55,7 +47,7 @@ export default function IndexPage() {
           href={siteConfig.links.signup}
           className={buttonVariants({ variant: "link" })}
         >
-          Ghost
+          Link
         </Link>
         <Link
           target="_blank"
