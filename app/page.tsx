@@ -21,14 +21,6 @@ export default function IndexPage() {
           target="_blank"
           rel="noreferrer"
           href={siteConfig.links.signup}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          Sign up
-        </Link>
-        <Link
-          target="_blank"
-          rel="noreferrer"
-          href={siteConfig.links.signup}
           className={buttonVariants({ variant: "destructive", size: "lg" })}
         >
           Destructive
@@ -41,6 +33,8 @@ export default function IndexPage() {
         >
           Ghost
         </Link>
+      </div>
+      <div className="flex gap-4">
         <Link
           target="_blank"
           rel="noreferrer"
