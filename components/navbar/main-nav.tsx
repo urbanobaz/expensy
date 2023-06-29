@@ -9,8 +9,6 @@ import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 
-import styles from "./navbar.module.css"
-
 interface MainNavProps {
   items?: NavItem[]
 }
@@ -18,7 +16,7 @@ interface MainNavProps {
 export function MainNav({ items }: MainNavProps) {
   const { data: session } = useSession()
   return (
-    <div className={cn(styles.navbar, "flex gap-6 md:gap-10")}>
+    <div className="flex gap-6 md:gap-10">
       <Link
         href={session ? "/dashboard" : "/"}
         className="flex items-center space-x-2"
@@ -26,8 +24,8 @@ export function MainNav({ items }: MainNavProps) {
         <Icons.logo className="h-6 w-6" />
         <span className="inline-block font-bold">{siteConfig.name}</span>
       </Link>
-      {items?.length ? (
-        <nav className={cn(styles.navbarLinks, "flex gap-6")}>
+      {items?.length && session ? (
+        <nav className="hidden gap-4 md:flex">
           {items?.map(
             (item, index) =>
               item.href && (

@@ -4,7 +4,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { expenseData } from "@/app/dashboard/expense/expense-data-table"
 
 async function getExpenseData() {
-  const session = getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
   const data = await expenseData(session?.user?.email)
   return data
 }

@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 
 export type Income = {
   id: number
-  amount: number
+  amount: string
   type: string
   client: string
-  date: Date
+  date: string
 }
 
 export const columns: ColumnDef<Income>[] = [
