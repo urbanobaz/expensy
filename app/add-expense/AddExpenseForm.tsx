@@ -1,5 +1,6 @@
 "use client"
 
+import { revalidatePath } from "next/cache"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 
@@ -17,6 +18,8 @@ export default function AddExpenseForm() {
       return
     }
     await createExpense(formData, session?.user?.email)
+
+    revalidatePath("/dashboard")
     router.push("/dashboard")
   }
   return (
