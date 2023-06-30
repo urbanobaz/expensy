@@ -1,8 +1,9 @@
 "use server"
 
+import { revalidatePath } from "next/cache"
 import prisma from "@/prisma/client"
 
-import { currencyFormat, dateToString } from "@/lib/utils"
+import { dateToString } from "@/lib/utils"
 
 export async function getExpense() {
   const expense = await prisma.expense.findMany()
@@ -22,6 +23,7 @@ export async function createExpense(formData, email) {
       userEmail,
     },
   })
+  revalidatePath("/dashboard")
 }
 
 export async function createIncome(formData, email) {
@@ -39,6 +41,7 @@ export async function createIncome(formData, email) {
       userEmail,
     },
   })
+  revalidatePath("/dashboard")
 }
 
 export async function getIncomeDataByUser(email) {

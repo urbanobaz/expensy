@@ -1,6 +1,5 @@
 "use client"
 
-import { revalidatePath } from "next/cache"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 
@@ -19,7 +18,6 @@ export default function AddIncomeForm() {
       return
     }
     await createIncome(formData, session.user?.email)
-    revalidatePath("/dashboard")
     router.push("/dashboard")
   }
   return (
