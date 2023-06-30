@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import { CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { toast } from "@/components/ui/use-toast"
 import { createExpense } from "@/app/actions"
 
 export default function AddExpenseForm() {
@@ -36,7 +37,15 @@ export default function AddExpenseForm() {
       />
       <Input name="date" type="date" className="mb-2" />
       <CardFooter className="px-0 pt-6">
-        <Button type="submit" className="w-full text-base">
+        <Button
+          type="submit"
+          className="w-full text-base"
+          onClick={() => {
+            toast({
+              description: "Expense  added!",
+            })
+          }}
+        >
           Add Expense
         </Button>
       </CardFooter>
