@@ -22,7 +22,7 @@ import { IncomeDataTable } from "@/app/dashboard/income/income-data-table"
 
 export default async function DashboardPage() {
   const incomeTableData = await getIncomeData()
-  const expenseTableData = await getExpenseData()
+  // const expenseTableData = await getExpenseData()
   const incomeBarChartInfo = await organizedIncomeData()
   const expenseBarChartInfo = await organizedExpenseData()
   const totalIncome = await totalIncomeAmount()
@@ -112,7 +112,7 @@ export default async function DashboardPage() {
                 <CardTitle>Expense Breakdown</CardTitle>
               </CardHeader>
               <CardContent className="pl-6">
-                <ExpenseDataTable data={expenseTableData} />
+                <ExpenseDataTable />
               </CardContent>
             </Card>
           </div>

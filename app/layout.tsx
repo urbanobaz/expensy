@@ -1,6 +1,7 @@
 /* eslint-disable tailwindcss/classnames-order */
 import "@/styles/globals.css"
 import { Metadata } from "next"
+import { InfoProvider } from "@/context/context"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -43,14 +44,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <NextAuthProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="relative flex min-h-screen flex-col">
-                <SiteHeader />
-                <div className="flex-1">{children}</div>
-              </div>
-              <Toaster />
-              <TailwindIndicator />
-            </ThemeProvider>
+            <InfoProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+              >
+                <div className="relative flex min-h-screen flex-col">
+                  <SiteHeader />
+                  <div className="flex-1">{children}</div>
+                </div>
+                <Toaster />
+                <TailwindIndicator />
+              </ThemeProvider>
+            </InfoProvider>
           </NextAuthProvider>
         </body>
       </html>

@@ -1,14 +1,13 @@
-import { currencyFormat, dateToString } from "@/lib/utils"
+"use client"
+
+import { useContext, useEffect } from "react"
+import { InfoContext } from "@/context/context"
+
 import { columns } from "@/app/dashboard/expense/columns"
 import { DataTable } from "@/app/dashboard/expense/data-table"
 
-export function ExpenseDataTable({ data }) {
-  const preppedData = data.map((obj) => {
-    return {
-      ...obj,
-      date: dateToString(new Date(obj.date)),
-      amount: currencyFormat(obj.amount),
-    }
-  })
-  return <DataTable columns={columns} data={preppedData} />
+export function ExpenseDataTable() {
+  const [expenseArray, setExpenseArray] = useContext(InfoContext)
+  console.log(expenseArray)
+  return <DataTable columns={columns} data={expenseArray} />
 }

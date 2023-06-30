@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
-import { createIncome } from "@/app/actions"
+import { createIncome, getIncomeDataByUser } from "@/app/actions"
 
 export default function AddIncomeForm() {
   const { data: session } = useSession()
@@ -18,6 +18,7 @@ export default function AddIncomeForm() {
       return
     }
     await createIncome(formData, session.user?.email)
+    const expenses = getIncomeDataByUser(session?.user?.email)
     router.push("/dashboard")
   }
   return (
