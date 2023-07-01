@@ -9,7 +9,7 @@ export type Expense = {
   id: number
   description: string
   date: string
-  amount: number
+  amount: string
 }
 
 export const columns: ColumnDef<Expense>[] = [

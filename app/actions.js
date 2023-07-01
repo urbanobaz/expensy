@@ -69,7 +69,7 @@ export async function getExpenseDataByUser(email) {
   const preppedExpense = data.map((obj) => {
     return {
       ...obj,
-      date: dateToString(new Date(obj.date)),
+      date: new Date(obj.date),
       amount: obj.amount,
     }
   })

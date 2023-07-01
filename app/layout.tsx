@@ -11,6 +11,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import { NextAuthProvider } from "./provider"
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: {

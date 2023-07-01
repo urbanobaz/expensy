@@ -20,6 +20,8 @@ import {
 import { IncomeBarChart } from "@/app/dashboard/income/income-bar-chart"
 import { IncomeDataTable } from "@/app/dashboard/income/income-data-table"
 
+import styles from "./Dashboard.module.css"
+
 export default async function DashboardPage() {
   const incomeTableData = await getIncomeData()
   const expenseTableData = await getExpenseData()
@@ -72,7 +74,7 @@ export default async function DashboardPage() {
         </div>
 
         <TabsContent value="income" className="space-y-4">
-          <div className="">
+          <div className="hidden sm:block">
             <Card className="w-full">
               <CardHeader>
                 <CardTitle>Monthly Income</CardTitle>
@@ -83,7 +85,15 @@ export default async function DashboardPage() {
             </Card>
           </div>
 
-          <div className="">
+          <div className="flex flex-col sm:hidden">
+            <p className="py-4 text-lg">Monthly Income</p>
+            <IncomeBarChart
+              data={incomeBarChartInfo}
+              classNames={styles.smallIncomeBarChart}
+            />
+          </div>
+
+          <div className="hidden sm:block">
             <Card className="w-full">
               <CardHeader>
                 <CardTitle>Income Breakdown</CardTitle>
@@ -93,9 +103,14 @@ export default async function DashboardPage() {
               </CardContent>
             </Card>
           </div>
+
+          <div className="flex flex-col sm:hidden">
+            <p className="py-4 text-lg">Income Breakdown</p>
+            <IncomeDataTable data={incomeTableData} />
+          </div>
         </TabsContent>
         <TabsContent value="expense" className="space-y-4">
-          <div className="">
+          <div className="hidden sm:block">
             <Card className="w-full">
               <CardHeader>
                 <CardTitle>Monthly Expense</CardTitle>
@@ -106,7 +121,15 @@ export default async function DashboardPage() {
             </Card>
           </div>
 
-          <div className="">
+          <div className="flex flex-col sm:hidden">
+            <p className="py-4 text-lg">Monthly Expense</p>
+            <ExpenseBarChart
+              data={expenseBarChartInfo}
+              classNames={styles.smallExpenseBarChart}
+            />
+          </div>
+
+          <div className="hidden sm:block">
             <Card className="w-full">
               <CardHeader>
                 <CardTitle>Expense Breakdown</CardTitle>
@@ -115,6 +138,11 @@ export default async function DashboardPage() {
                 <ExpenseDataTable data={expenseTableData} />
               </CardContent>
             </Card>
+          </div>
+
+          <div className="flex flex-col sm:hidden">
+            <p className="py-4 text-lg">Expense Breakdown</p>
+            <ExpenseDataTable data={expenseTableData} />
           </div>
         </TabsContent>
       </Tabs>

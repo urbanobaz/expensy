@@ -2,9 +2,19 @@
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 
-export function ExpenseBarChart({ data }) {
+type BarChartInfo = {
+  name: string
+  total: number
+}
+
+interface IncomeBarChartProps {
+  data: BarChartInfo[]
+  classNames?: string
+}
+
+export function IncomeBarChart({ data, classNames }: IncomeBarChartProps) {
   return (
-    <ResponsiveContainer width="100%" height={350}>
+    <ResponsiveContainer className={classNames} width="100%" height={350}>
       <BarChart data={data}>
         <XAxis
           dataKey="name"
@@ -20,7 +30,7 @@ export function ExpenseBarChart({ data }) {
           axisLine={false}
           tickFormatter={(value) => `$${value}`}
         />
-        <Bar dataKey="total" fill="#fa491d" radius={[10, 10, 10, 10]} />
+        <Bar dataKey="total" fill="#adfa1d" radius={[10, 10, 10, 10]} />
       </BarChart>
     </ResponsiveContainer>
   )

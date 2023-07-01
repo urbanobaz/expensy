@@ -1,0 +1,6 @@
+.smallIncomeBarChart,
+.smallExpenseBarChart {
+  width: 106% !important;
+  margin-left: -5%;
+  align-self: center;
+}
