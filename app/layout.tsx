@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/classnames-order */
 import "@/styles/globals.css"
 import { Metadata } from "next"
 
@@ -6,12 +5,11 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
+import Footer from "@/components/footer/footer"
 import { SiteHeader } from "@/components/navbar/site-header"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import { NextAuthProvider } from "./provider"
-import "./globals.css"
 
 export const metadata: Metadata = {
   title: {
@@ -39,7 +37,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body
           className={cn(
-            "min-h-screen font-sans bg-background p-0",
+            "min-h-screen bg-background p-0 font-sans",
             fontSans.variable
           )}
         >
@@ -48,9 +46,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <div className="relative flex min-h-screen flex-col">
                 <SiteHeader />
                 <div className="flex-1">{children}</div>
+                <Footer />
               </div>
               <Toaster />
-              <TailwindIndicator />
             </ThemeProvider>
           </NextAuthProvider>
         </body>
