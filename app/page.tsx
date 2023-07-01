@@ -1,11 +1,31 @@
+import Image from "next/image"
+
 export default function IndexPage() {
   return (
-    <section className="container grid items-center gap-6 px-10 py-8">
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+    <section className="container grid items-center px-4 sm:px-10 sm:py-8">
+      <div className=" max-w-full">
+        <h1 className="px-4 text-center text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           Sign up to keep track of <br className="hidden sm:inline" />
           your income and expenses intuitively.
         </h1>
+      </div>
+      <div className="hidden w-full justify-center sm:flex">
+        <Image
+          src={"/expensy.png"}
+          alt={"Image showcase for Expensy"}
+          width="1000"
+          height="700"
+          className="rounded-md"
+        />
+      </div>
+      <div className="flex w-full justify-center sm:hidden">
+        <Image
+          src={"/expensy-tall.png"}
+          alt={"Image showcase for Expensy for small screens"}
+          width="1000"
+          height="700"
+          className="rounded-md"
+        />
       </div>
     </section>
   )
