@@ -2,10 +2,11 @@ import Image from "next/image"
 
 export default function IndexPage() {
   return (
-    <section className="container grid items-center px-4 sm:px-10 sm:py-8">
+    <section className="container grid items-center px-4 sm:px-10">
       <div className=" max-w-full">
-        <h1 className="px-4 text-center text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          Sign up to keep track of <br className="hidden sm:inline" />
+        <h1 className="px-4 py-6 text-center text-2xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+          Sign in with Google to keep track of{" "}
+          <br className="hidden sm:inline" />
           your income and expenses intuitively.
         </h1>
       </div>
