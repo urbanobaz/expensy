@@ -24,7 +24,7 @@ export default function IndexPage() {
           src={"/expensy-tall.png"}
           alt={"Image showcase for Expensy for small screens"}
           width="1000"
-          height="700"
+          height="701"
           className="rounded-md"
         />
       </div>
