@@ -35,7 +35,7 @@ export default function AddExpenseForm() {
         className="mb-2"
         step="0.01"
       />
-      <Input name="date" type="date" className="mb-2" placeholder="06/28/23" />
+      <Input name="date" type="date" className="mb-2" />
       <CardFooter className="px-0 pt-6">
         <Button
           type="submit"
