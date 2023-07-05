@@ -17,7 +17,7 @@ export default function AddIncomeForm() {
       console.log("Need to have an account to add income or expense.")
       return
     }
-    await createIncome(formData, session.user?.email)
+    await createIncome(formData, session?.user?.email)
     router.push("/dashboard")
   }
   return (

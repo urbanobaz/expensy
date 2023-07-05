@@ -5,7 +5,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
 async function getExpenseData() {
   const session = await getServerSession(authOptions)
-  if (!session.user.email) {
+  if (!session?.user?.email) {
     return []
   }
   const data = await getExpenseDataByUser(session?.user?.email)
