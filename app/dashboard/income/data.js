@@ -5,7 +5,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
 async function getIncomeData() {
   const session = await getServerSession(authOptions)
-  if (!session.user.email) {
+  if (!session?.user?.email) {
     return []
   }
   const data = await getIncomeDataByUser(session?.user?.email)
