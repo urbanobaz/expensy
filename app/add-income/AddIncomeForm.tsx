@@ -36,7 +36,7 @@ export default function AddIncomeForm() {
         step="0.01"
         className="mb-2"
       />
-      <Input name="date" type="date" className="mb-2" />
+      <Input name="date" type="date" className="mb-2" placeholder="06/28/23" />
       <CardFooter className="px-0 pt-6">
         <Button
           type="submit"
