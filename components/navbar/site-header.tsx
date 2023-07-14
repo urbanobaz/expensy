@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 import { siteConfig } from "@/config/site"
@@ -17,6 +18,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 export function SiteHeader() {
   const { data: session } = useSession()
+  const router = useRouter()
   const firstLetter = session?.user?.name?.charAt(0)
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -73,7 +75,14 @@ export function SiteHeader() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button onClick={() => signIn("google")}>Sign in</Button>
+              <Button
+                onClick={() => {
+                  signIn("google")
+                  router.push("/dashboard")
+                }}
+              >
+                Sign in
+              </Button>
             )}
           </nav>
         </div>
