@@ -3,8 +3,6 @@
 import { revalidatePath } from "next/cache"
 import prisma from "@/prisma/client"
 
-import { dateToString } from "@/lib/utils"
-
 export async function getExpense() {
   const expense = await prisma.expense.findMany()
   return expense
@@ -74,4 +72,24 @@ export async function getExpenseDataByUser(email) {
     }
   })
   return preppedExpense
+}
+
+export async function deleteExpense(expenseID) {
+  const data = await prisma.expense.delete({
+    where: {
+      id: expenseID,
+    },
+  })
+  revalidatePath("/dashboard")
+  console.log("Expense deleted!")
+}
+
+export async function deleteIncome(incomeID) {
+  const data = await prisma.income.delete({
+    where: {
+      id: incomeID,
+    },
+  })
+  revalidatePath("/dashboard")
+  console.log("Income deleted!")
 }

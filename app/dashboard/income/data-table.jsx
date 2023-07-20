@@ -1,13 +1,12 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import {
   DropdownMenu,
   DropdownMenuContent,
 } from "@radix-ui/react-dropdown-menu"
 import {
-  ColumnDef,
-  SortingState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
@@ -26,16 +25,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-}
-
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
+export function DataTable({ columns, data, deleteIncome }) {
+  const [sorting, setSorting] = useState([])
   const table = useReactTable({
     data,
     columns,
@@ -85,12 +76,30 @@ export function DataTable<TData, TValue>({
                     <DropdownMenuTrigger>
                       <MoreVerticalIcon />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-slate-900 p-2 mt-2">
+                    <DropdownMenuContent className="mt-2 rounded-sm border-[0.5px] border-slate-800 border-opacity-30 bg-white p-2 dark:border-white dark:border-opacity-20 dark:bg-slate-900">
                       <DropdownMenuItem>
-                        <p>Edit</p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            console.log("Edit")
+                          }}
+                        >
+                          Edit
+                        </Button>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <p>Delete</p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            const rowID = parseInt(row.id)
+                            const selected = data[rowID]
+                            deleteIncome(parseInt(selected.id))
+                          }}
+                        >
+                          Delete
+                        </Button>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

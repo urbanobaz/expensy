@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import {
   ColumnDef,
   SortingState,
@@ -9,7 +9,15 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
+import { MoreVerticalIcon } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown"
 import {
   Table,
   TableBody,
@@ -18,17 +26,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { deleteExpense } from "@/app/actions"
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-}
-
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
+export function DataTable({ columns, data }) {
+  const [sorting, setSorting] = useState([])
   const table = useReactTable({
     data,
     columns,
@@ -73,6 +74,39 @@ export function DataTable<TData, TValue>({
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
+                <TableCell className="w-3">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <MoreVerticalIcon />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="mt-2 rounded-sm border-[0.5px] border-slate-800 border-opacity-30 bg-white p-2 dark:border-white dark:border-opacity-20 dark:bg-slate-900">
+                      <DropdownMenuItem>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            console.log("Edit")
+                          }}
+                        >
+                          Edit
+                        </Button>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            const rowID = parseInt(row.id)
+                            const selected = data[rowID]
+                            deleteExpense(parseInt(selected.id))
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
               </TableRow>
             ))
           ) : (

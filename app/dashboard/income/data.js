@@ -1,3 +1,4 @@
+import moment from "moment"
 import { getServerSession } from "next-auth"
 
 import { getIncomeDataByUser } from "@/app/actions"
@@ -14,8 +15,15 @@ async function getIncomeData() {
 
 async function organizedIncomeData() {
   const data = await getIncomeData()
+  const preppedData = data.map((obj) => {
+    return {
+      ...obj,
+      date: moment(obj.date).add(4, "h").toDate(),
+      amount: obj.amount,
+    }
+  })
 
-  const januaryIncomeArray = data.filter(
+  const januaryIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 0 && income.date.getFullYear() === 2023
   )
@@ -24,7 +32,7 @@ async function organizedIncomeData() {
     janTotal += income.amount
   })
 
-  const februaryIncomeArray = data.filter(
+  const februaryIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 1 && income.date.getFullYear() === 2023
   )
@@ -33,7 +41,7 @@ async function organizedIncomeData() {
     febTotal += income.amount
   })
 
-  const marchIncomeArray = data.filter(
+  const marchIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 2 && income.date.getFullYear() === 2023
   )
@@ -42,7 +50,7 @@ async function organizedIncomeData() {
     marTotal += income.amount
   })
 
-  const aprilIncomeArray = data.filter(
+  const aprilIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 3 && income.date.getFullYear() === 2023
   )
@@ -51,7 +59,7 @@ async function organizedIncomeData() {
     aprTotal += income.amount
   })
 
-  const mayIncomeArray = data.filter(
+  const mayIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 4 && income.date.getFullYear() === 2023
   )
@@ -60,7 +68,7 @@ async function organizedIncomeData() {
     mayTotal += income.amount
   })
 
-  const juneIncomeArray = data.filter(
+  const juneIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 5 && income.date.getFullYear() === 2023
   )
@@ -69,7 +77,7 @@ async function organizedIncomeData() {
     junTotal += income.amount
   })
 
-  const julyIncomeArray = data.filter(
+  const julyIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 6 && income.date.getFullYear() === 2023
   )
@@ -78,7 +86,7 @@ async function organizedIncomeData() {
     julTotal += income.amount
   })
 
-  const augustIncomeArray = data.filter(
+  const augustIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 7 && income.date.getFullYear() === 2023
   )
@@ -87,7 +95,7 @@ async function organizedIncomeData() {
     augTotal += income.amount
   })
 
-  const septemberIncomeArray = data.filter(
+  const septemberIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 8 && income.date.getFullYear() === 2023
   )
@@ -96,7 +104,7 @@ async function organizedIncomeData() {
     sepTotal += income.amount
   })
 
-  const octoberIncomeArray = data.filter(
+  const octoberIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 9 && income.date.getFullYear() === 2023
   )
@@ -105,7 +113,7 @@ async function organizedIncomeData() {
     octTotal += income.amount
   })
 
-  const novemberIncomeArray = data.filter(
+  const novemberIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 10 && income.date.getFullYear() === 2023
   )
@@ -114,7 +122,7 @@ async function organizedIncomeData() {
     novTotal += income.amount
   })
 
-  const decemberIncomeArray = data.filter(
+  const decemberIncomeArray = preppedData.filter(
     (income) =>
       income.date.getMonth() === 11 && income.date.getFullYear() === 2023
   )

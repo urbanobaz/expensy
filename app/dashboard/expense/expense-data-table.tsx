@@ -1,3 +1,5 @@
+import moment from "moment"
+
 import { currencyFormat, dateToString } from "@/lib/utils"
 import { columns } from "@/app/dashboard/expense/columns"
 import { DataTable } from "@/app/dashboard/expense/data-table"
@@ -18,7 +20,7 @@ export function ExpenseDataTable({ data }: ExpenseDataTableProps) {
   const preppedData = data.map((obj) => {
     return {
       ...obj,
-      date: dateToString(obj.date),
+      date: dateToString(moment(obj.date).add(4, "h").toDate()),
       amount: currencyFormat(obj.amount),
     }
   })

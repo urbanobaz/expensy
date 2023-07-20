@@ -1,3 +1,4 @@
+import moment from "moment"
 import { getServerSession } from "next-auth"
 
 import { getExpenseDataByUser } from "@/app/actions"
@@ -14,8 +15,15 @@ async function getExpenseData() {
 
 async function organizedExpenseData() {
   const data = await getExpenseData()
+  const preppedData = data.map((obj) => {
+    return {
+      ...obj,
+      date: moment(obj.date).add(4, "h").toDate(),
+      amount: obj.amount,
+    }
+  })
 
-  const januaryExpenseArray = data.filter(
+  const januaryExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 0 && expense.date.getFullYear() === 2023
   )
@@ -24,7 +32,7 @@ async function organizedExpenseData() {
     janTotal += expense.amount
   })
 
-  const februaryExpenseArray = data.filter(
+  const februaryExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 1 && expense.date.getFullYear() === 2023
   )
@@ -33,7 +41,7 @@ async function organizedExpenseData() {
     febTotal += expense.amount
   })
 
-  const marchExpenseArray = data.filter(
+  const marchExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 2 && expense.date.getFullYear() === 2023
   )
@@ -42,7 +50,7 @@ async function organizedExpenseData() {
     marTotal += expense.amount
   })
 
-  const aprilExpenseArray = data.filter(
+  const aprilExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 3 && expense.date.getFullYear() === 2023
   )
@@ -51,7 +59,7 @@ async function organizedExpenseData() {
     aprTotal += expense.amount
   })
 
-  const mayExpenseArray = data.filter(
+  const mayExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 4 && expense.date.getFullYear() === 2023
   )
@@ -60,7 +68,7 @@ async function organizedExpenseData() {
     mayTotal += expense.amount
   })
 
-  const juneExpenseArray = data.filter(
+  const juneExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 5 && expense.date.getFullYear() === 2023
   )
@@ -69,7 +77,7 @@ async function organizedExpenseData() {
     junTotal += expense.amount
   })
 
-  const julyExpenseArray = data.filter(
+  const julyExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 6 && expense.date.getFullYear() === 2023
   )
@@ -78,7 +86,7 @@ async function organizedExpenseData() {
     julTotal += expense.amount
   })
 
-  const augustExpenseArray = data.filter(
+  const augustExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 7 && expense.date.getFullYear() === 2023
   )
@@ -87,7 +95,7 @@ async function organizedExpenseData() {
     augTotal += expense.amount
   })
 
-  const septemberExpenseArray = data.filter(
+  const septemberExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 8 && expense.date.getFullYear() === 2023
   )
@@ -96,7 +104,7 @@ async function organizedExpenseData() {
     sepTotal += expense.amount
   })
 
-  const octoberExpenseArray = data.filter(
+  const octoberExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 9 && expense.date.getFullYear() === 2023
   )
@@ -105,7 +113,7 @@ async function organizedExpenseData() {
     octTotal += expense.amount
   })
 
-  const novemberExpenseArray = data.filter(
+  const novemberExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 10 && expense.date.getFullYear() === 2023
   )
@@ -114,7 +122,7 @@ async function organizedExpenseData() {
     novTotal += expense.amount
   })
 
-  const decemberExpenseArray = data.filter(
+  const decemberExpenseArray = preppedData.filter(
     (expense) =>
       expense.date.getMonth() === 11 && expense.date.getFullYear() === 2023
   )
