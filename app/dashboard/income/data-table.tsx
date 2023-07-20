@@ -2,6 +2,10 @@
 
 import React from "react"
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+} from "@radix-ui/react-dropdown-menu"
+import {
   ColumnDef,
   SortingState,
   flexRender,
@@ -9,7 +13,10 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
+import { MoreVerticalIcon } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
+import { DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown"
 import {
   Table,
   TableBody,
@@ -73,6 +80,21 @@ export function DataTable<TData, TValue>({
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
+                <TableCell className="w-3">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <MoreVerticalIcon />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="bg-slate-900 p-2 mt-2">
+                      <DropdownMenuItem>
+                        <p>Edit</p>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <p>Delete</p>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
               </TableRow>
             ))
           ) : (
