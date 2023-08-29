@@ -21,6 +21,7 @@ import { IncomeBarChart } from "@/app/dashboard/income/income-bar-chart"
 import { IncomeDataTable } from "@/app/dashboard/income/income-data-table"
 
 import styles from "./Dashboard.module.css"
+import Donut from "./donut-chart"
 
 export default async function DashboardPage() {
   const incomeTableData = await getIncomeData()
@@ -40,7 +41,7 @@ export default async function DashboardPage() {
           <TabsTrigger value="expense">Expenses</TabsTrigger>
         </TabsList>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
+          <Card className="">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="font-medium">Total Income</CardTitle>
               <Plus className="h-6 w-6 text-muted-foreground" />
@@ -71,13 +72,16 @@ export default async function DashboardPage() {
               </Link>
             </CardContent>
           </Card>
+          <Card>
+            <Donut income={totalIncome} loss={totalExpense} />
+          </Card>
         </div>
 
         <TabsContent value="income" className="space-y-4">
           <div className="hidden sm:block">
             <Card className="w-full">
               <CardHeader>
-                <CardTitle className="font-mediun">Monthly Income</CardTitle>
+                <CardTitle className="font-medium">Monthly Income</CardTitle>
               </CardHeader>
               <CardContent className="px-2">
                 <IncomeBarChart data={incomeBarChartInfo} />
